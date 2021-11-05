@@ -1,10 +1,24 @@
-import './App.css';
+import React from "react";
+import Header from "./components/Header";
+import Profile from "./components/Profile";
+import Repositories from "./components/Repositories";
+import useGithub from "./hooks/githubHooks";
 
 function App() {
+const {githubState} = useGithub()
+
   return (
-    <div>
-      Hello World
-    </div>
+    <Header>
+      {githubState.loading ? (
+          <p>loading</p>
+        ):(
+          <>
+            <Profile/>
+            <Repositories/>
+          </>
+        )
+      }
+    </Header>
   );
 }
 
