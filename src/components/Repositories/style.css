@@ -28,6 +28,7 @@
 }
 
 .TabPanel {
+  width: 100vw;
   margin-top: -5px;
   padding: 8px;
   border: 1px solid #ccc;
@@ -36,4 +37,10 @@
 }
 .TabPanel.is-selected {
   display: block;
+}
+
+.warper-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }

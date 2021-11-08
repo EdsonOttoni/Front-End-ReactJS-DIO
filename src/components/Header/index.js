@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import useGithub from "../../hooks/githubHooks";
 
+import './styles.css'
+
 function Header({children}){
   const {getUser} = useGithub()
   const [username, setUsername] = useState()
@@ -11,8 +13,8 @@ function Header({children}){
   }
 
   return(
-    <div>
-      <div>
+    <>
+      <div div className='header-container'>
         <input
           type='text'
           placeholder='Digite um nome pra buscar'
@@ -20,8 +22,10 @@ function Header({children}){
         />
         <button onClick={submitGetUser}>Buscar</button>
       </div>
-      {children}
-    </div>
+      <div>
+        {children}
+      </div>
+    </>
   )
 }
 

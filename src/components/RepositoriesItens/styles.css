@@ -1,0 +1,9 @@
+.wrapper {
+  width: 400px;
+  height: 200px;
+  margin: 16px 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  align-content: center;
+}

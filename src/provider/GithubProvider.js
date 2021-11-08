@@ -10,7 +10,9 @@ export const GithubContext = createContext({
 function GithubProvider({children}){
   const [githubState, setGithubState] = useState({
     loading:false,
+    hasUser: false,
     user:{
+      id: undefined,
       login: undefined,
       name: undefined,
       avatarUrl: undefined,
@@ -36,7 +38,9 @@ function GithubProvider({children}){
     api.get(`users/${username}`).then(({data}) => {
       setGithubState((prevState) => ({
         ...prevState,
+        hasUser: true,
         user:{
+          id: data.id,
           login: data.login,
           name: data.name,
           blog: data.blog,
@@ -58,9 +62,29 @@ function GithubProvider({children}){
     })
   }
 
+  const getRepos = (username) => {
+    api.get(`users/${username}/repos`).then(({data}) => {
+      setGithubState((prevState) => ({
+        ...prevState,
+        repositories: data
+      }))
+    })
+  }
+
+  const getStarred = (username) => {
+    api.get(`users/${username}/starred`).then(({data}) => {
+      setGithubState((prevState) => ({
+        ...prevState,
+        starred: data
+      }))
+    })
+  }
+
   const contextValue = {
     githubState,
-    getUser: useCallback((username) => getUser(username),[])
+    getUser: useCallback((username) => getUser(username),[]),
+    getRepos: useCallback((username) => getRepos(username), []),
+    getStarred: useCallback((username) => getStarred(username), [])
   }
 
   return(

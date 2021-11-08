@@ -1,8 +1,10 @@
 import React from "react"
 
+import './styles.css'
+
 function RepositoriesItens({ name, linkToRepo, fullName }){
   return(
-    <React.Fragment>
+    <div className='wrapper'>
       <h2>{name}</h2>
       <h4>Full Name:</h4>
       <a 
@@ -12,7 +14,7 @@ function RepositoriesItens({ name, linkToRepo, fullName }){
       >
         {fullName}
       </a>
-    </React.Fragment>
+    </div>
   )
 }
 
